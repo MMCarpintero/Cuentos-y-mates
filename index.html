@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Mercedes Carpintero Gómez">
+<meta name="description" content="Matemáticas a través de cuentos, libros y álbumes ilustrados para Educación Infantil y Primaria. LOMLOE · D 38/22 · Castilla y León.">
+<meta name="copyright" content="Mercedes Carpintero Gómez · CC BY-NC-SA 4.0">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es">
 <title>Cuentos y mates · Matemáticas a través de cuentos · Educación Primaria</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,6 +135,7 @@ details.sect>summary span{font-family:'Amatic SC','Segoe Print',cursive;font-wei
 details.sect>summary span:before{content:'▸ ';color:var(--v700)}details.sect[open]>summary span:before{content:'▾ '}
 footer{border-top:2px solid var(--v300);background:var(--v100);padding:18px 14px;font-size:.74rem;color:var(--mut)}
 footer div{max-width:1180px;margin:0 auto}
+footer h3{font-family:'Amatic SC',cursive;font-weight:700;font-size:1.7rem;color:var(--v900);margin:10px 0 2px}footer ul{margin:2px 0 6px;padding-left:20px}footer p{margin:6px 0}
 </style>
 </head>
 <body>
@@ -263,8 +268,19 @@ footer div{max-width:1180px;margin:0 auto}
 </section>
 </main>
 <footer><div>
- <p>Obra bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es">Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>. Puedes usarla en el aula, copiarla y adaptarla citando la autoría, sin fines comerciales y manteniendo esta licencia.</p>
- <p>Las portadas pertenecen a sus editoriales y se muestran con fin identificativo y didáctico.</p>
+ <p><b>Autoría:</b> Mercedes Carpintero Gómez.</p>
+ <p>Esta obra está bajo una licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>. Puedes copiarla, distribuirla y adaptarla citando la autoría, sin fines comerciales y manteniendo esta misma licencia en las obras derivadas.</p>
+ <p><b>Cita recomendada:</b> Carpintero Gómez, M. (2026). <i>Cuentos y mates: aprender matemáticas a través de cuentos, libros y álbumes ilustrados</i> [aplicación web].</p>
+ <p>Las portadas, los títulos y los textos de los libros pertenecen a sus autores y editoriales. Se muestran con fin identificativo y didáctico y no están cubiertos por esta licencia. Los portales y las referencias enlazados conservan sus propios derechos y condiciones de uso.</p>
+ <p>Los contenidos y las competencias específicas siguen las indicaciones del D 38/22 de Castilla y León según su publicación en el BOCYL.</p>
+ <h3>Condiciones de uso de este material</h3>
+ <ul>
+  <li><b>Puedes</b> usar las ideas, la guía de aula y los tipos de tareas en el aula, copiarlos, distribuirlos y adaptarlos, <b>citando siempre la autoría</b>.</li>
+  <li><b>No puedes</b> darles un uso comercial ni incorporarlos a cursos, plataformas o publicaciones de terceros sin autorización.</li>
+  <li><b>Si los adaptas</b>, debes distribuir el resultado bajo esta misma licencia.</li>
+  <li><b>Si los publicas o distribuyes</b>, cita la autoría y comunícalo por correo a la autora.</li>
+ </ul>
+ <p>Para solicitar autorización para cualquier otro uso, o para comunicar una reproducción: <a href="mailto:a.n.investigacioneducativa@gmail.com?subject=Uso%20de%20Cuentos%20y%20mates">a.n.investigacioneducativa@gmail.com</a></p>
  <p>Si te animas a llevar alguno de estos cuentos al aula, nos encantaría ver cómo ha ido. Si te apetece, puedes enviarnos fotos y propuestas de tus actividades a <a href="mailto:a.n.investigacioneducativa@gmail.com?subject=Cuentos%20y%20mates%3A%20fotos%20y%20propuestas">a.n.investigacioneducativa@gmail.com</a>.</p>
 </div></footer>
 
@@ -580,6 +596,7 @@ const NOTE_REL='Cada cuento puede usarse en varios cursos, sentidos y competenci
 const todayES=()=>new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
 const head=sub=>[{t:'title',text:'Cuentos y mates'},{t:'sub',text:sub},{t:'note',text:`${todayES()} · LOMLOE · Decreto 38/2022 de Castilla y León`},{t:'rule'},
  {t:'box',fill:BLUEBG,border:BLUEBD,items:[{t:'p',size:9,runs:[{s:'El curso y la edad son relativos. ',b:1,c:BLUE},{s:NOTE_REL,c:BLUE}],after:0}]},{t:'gap',h:6}];
+const citaRec=()=>[{t:'p',size:8.5,runs:[{s:'Cita recomendada: ',b:1,c:'667D6E'},{s:'Carpintero Gómez, M. (2026). ',c:'667D6E'},{s:'Cuentos y mates: aprender matemáticas a través de cuentos, libros y álbumes ilustrados',i:1,c:'667D6E'},{s:' [aplicación web]. Las portadas pertenecen a sus editoriales y se muestran con fin identificativo y didáctico.',c:'667D6E'}],after:4}];
 const lab=(l,v)=>({t:'p',runs:[{s:l+': ',b:1,c:BL},{s:v}],after:3});
 function tipoBlocks(x,pre,b){
  const sent=sentTxt(x);
@@ -610,6 +627,7 @@ function bookBlocks(b){
  if(ch.length)B.push({t:'p',indent:14,text:'Mates de Cuento. (s. f.). Cuarenta tipos de tareas y ocho talleres creativos [presentación].',after:2});
  B.push({t:'p',indent:14,text:`${b.a||'Autoría no indicada'}. (s. f.). ${b.t}${b.e?'. '+b.e:''}.`,after:2});
  B.push({t:'note',text:'El año de publicación no consta en las fuentes del proyecto, por eso figura como (s. f.). Obra bajo licencia CC BY-NC-SA 4.0.'});
+ citaRec().forEach(z=>B.push(z));
  B.push({t:'note',text:'Si te animas a llevar este cuento al aula, nos encantaría ver cómo ha ido: puedes enviarnos fotos y propuestas a a.n.investigacioneducativa@gmail.com.'});
  return B}
 function guideBlocks(){
@@ -629,6 +647,7 @@ function guideBlocks(){
    return}
   if(box.querySelector('#cetab')){B.push({t:'h1',text:'Competencias específicas del área'});Object.entries(CEN).forEach(([n,v])=>B.push(lab('CE'+n,v[0]+': '+v[1])));B.push({t:'note',text:'Redacción condensada del D 38/2022; verificar literalidad en BOCYL n.º 190, de 30 de septiembre de 2022.'});return}
   walk(box,false)});
+ citaRec().forEach(z=>B.push(z));
  B.push({t:'note',text:'Si te animas a llevar estos cuentos al aula, nos encantaría ver cómo ha ido: puedes enviarnos fotos y propuestas a a.n.investigacioneducativa@gmail.com. Obra bajo licencia CC BY-NC-SA 4.0.'});
  return B}
 

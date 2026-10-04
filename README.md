@@ -9,6 +9,8 @@ Web para aprender matemáticas a través de cuentos, libros y álbumes ilustrado
 
 **Autoría:** Mercedes Carpintero Gómez.
 
+**Cita recomendada:** Carpintero Gómez, M. (2026). *Cuentos y mates: aprender matemáticas a través de cuentos, libros y álbumes ilustrados* [aplicación web].
+
 **Licencia:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es). Las portadas pertenecen a sus editoriales y se muestran con fin identificativo y didáctico.
 
 Si llevas algún cuento al aula, puedes enviar fotos y propuestas a a.n.investigacioneducativa@gmail.com.
