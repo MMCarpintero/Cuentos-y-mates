@@ -17,7 +17,7 @@ b,strong{font-weight:400;color:var(--v900)}
 a{color:var(--v900)}
 header{background:linear-gradient(135deg,var(--v300),var(--v200));color:var(--v900);text-align:center;padding:30px 16px 20px;border-bottom:3px solid var(--v500)}
 header h1{font-size:clamp(2.1rem,5.6vw,3.7rem);margin:6px auto 4px;max-width:1000px}
-header .tag{display:inline-block;background:var(--sun);color:var(--sunink);border-radius:20px;padding:0 14px;font-size:.78rem}
+header .tag{display:inline-block;background:#fff;color:var(--sunink);border-radius:20px;padding:0 14px;font-size:.78rem}
 header .aut{font-size:.9rem;color:var(--ink)}
 nav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px;background:var(--v500);padding:6px}
 nav button{font-family:'Amatic SC',cursive;font-weight:700;font-size:1.55rem;color:#fff;background:transparent;border:0;border-bottom:3px solid transparent;padding:0 18px;cursor:pointer;text-shadow:0 1px 1px rgba(47,93,68,.35)}
@@ -123,6 +123,7 @@ details.task.hl{border-color:var(--v700);box-shadow:0 0 0 3px var(--sun)}
 .bluebox h6{font-family:'Amatic SC',cursive;font-weight:700;font-size:1.3rem;color:#3f7399;margin:8px 0 0}
 .bluebox p{margin:2px 0}.bluebox ul{margin:2px 0;padding-left:20px}
 .bluebox .kv{background:#f6fafd;border-left-color:#b9d5e8}
+.tbhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.tbhead h5{margin:0}
 .btn.off{background:#b8cbbd}.btn.off:hover{background:#a3b8a8}
 details.sect{margin:6px 0}details.sect>summary{cursor:pointer;list-style:none;padding:4px 0}
 details.sect>summary::-webkit-details-marker{display:none}
@@ -155,7 +156,7 @@ footer div{max-width:1180px;margin:0 auto}
   <h2>Cómo buscar</h2>
   <ol>
    <li>Marca un curso, un sentido o ambos. Los cuentos que cumplan el filtro aparecen directamente debajo.</li>
-   <li>Cada cuento ofrece ideas para trabajar mates con él. Con los desplegables puedes elegir uno de los 40 tipos de tareas o uno de los 8 talleres creativos de la guía de aula, con su explicación y un ejemplo.</li>
+   <li>Cada cuento ofrece ideas para trabajar mates con él. Con los desplegables puedes añadir los tipos de tareas (hay 40) y los talleres creativos (hay 8) de la guía de aula que quieras, con su explicación y un ejemplo.</li>
    <li>Cada ficha tiene su botón «Descargar este cuento en PDF», que incluye lo que has elegido.</li>
    <li>Para ver todos los cuentos sin filtrar, entra en el repositorio.</li>
   </ol>
@@ -194,7 +195,6 @@ footer div{max-width:1180px;margin:0 auto}
  <div class="box">
   <h2>Guía de aula</h2>
   <p class="note">Orientaciones para llevar cualquier cuento al aula. Los cinco momentos, las sesiones tipo, los 40 tipos de tareas y los ocho talleres proceden de la presentación «Mates de Cuento». Los emparejamientos entre cada tipo de tarea y su cuento de ejemplo son propuestas orientativas: puedes cambiarlos.</p>
-  <div class="row" style="margin:6px 0 4px"><button class="btn" id="gpdf">Descargar la guía en PDF (para imprimir)</button><span class="note" id="gfb"></span></div>
   <h3>Cinco momentos del cuento</h3>
   <ul>
    <li><b>Antes:</b> provoca con la portada, una predicción o un reto.</li>
@@ -234,21 +234,13 @@ footer div{max-width:1180px;margin:0 auto}
   <tr><td>Potencial matemático · potencial narrativo · riqueza visual · ambigüedad productiva</td><td>Se puede manipular · transfiere a la vida diaria · ofrece relectura · admite distintos niveles</td></tr></table>
  </div>
 
- <div class="box">
-  <h2>Los 40 tipos de tareas</h2>
-  <p class="note">Pulsa un título para ver qué es, cómo se monta y un ejemplo con cuento. Los números 1 a 28 son actividades concretas, del 29 al 38 son estrategias de aula, el 39 es el mateclub y el 40 son los talleres con familias.</p>
-  <div class="row" style="margin-top:4px">
-   <input type="text" id="gq" placeholder="Buscar un tipo de tarea (por ejemplo: patrones, familias, estimar)" style="max-width:420px">
-   <button class="btn ghost sm" id="gopen">Abrir todos</button>
-   <button class="btn ghost sm" id="gclose">Cerrar todos</button>
-  </div>
-  <div id="tipos" style="margin-top:10px"></div>
- </div>
-
- <div class="box">
-  <h2>Ocho tipos de recursos: talleres creativos</h2>
-  <p class="note">Son para cuando el cuento pide más espacio. Duran varias sesiones y el libro se convierte en proyecto.</p>
-  <div id="talleres" style="margin-top:6px"></div>
+ <div class="box" id="gsel">
+  <h2>Tipos de tareas y talleres creativos</h2>
+  <p class="note">La guía reúne 40 tipos de tareas y 8 talleres creativos («Ocho tipos de recursos»). Elige en el desplegable cuáles quieres ver. <b>Los que aparecen aquí son los que se incluyen en el PDF.</b> Los números 1 a 28 son actividades concretas, del 29 al 38 estrategias de aula, el 39 es el mateclub y el 40 son los talleres con familias. Los talleres son proyectos de varias sesiones.</p>
+  <div class="grid2"><div style="grid-column:1/-1"><label class="l" for="gadd">Añadir a la guía</label><select id="gadd"></select></div></div>
+  <div class="row"><button class="btn ghost sm" id="gall">Añadir todos (40 tipos y 8 talleres)</button><button class="btn ghost sm" id="gclear">Quitar todos</button><span class="note" id="gcount"></span></div>
+  <div id="gshown" style="margin-top:8px"></div>
+  <div class="row" style="margin-top:14px"><button class="btn" id="gpdf">Descargar la guía en PDF (para imprimir)</button><span class="note" id="ginfo"></span><span class="note" id="gfb"></span></div>
  </div>
 
  <div class="box">
@@ -399,35 +391,42 @@ function renderRepo(){
 $('rgrid').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;showOnly(+b.dataset.pick)};
 
 /* ================= FICHA DEL CUENTO ================= */
-function typeBox(x,b){
+const sentTxt=x=>String(x.s||'T').includes('T')?'todos los sentidos':[...x.s].map(c=>SN[c]).filter(Boolean).join(', ');
+function typeBox(x,b,del){
  const tal=TALLERES.includes(x);
- return `<div class="bluebox"><h5>${tal?'Taller ':''}${x.n}. ${esc(x.t)}</h5>
- <div class="chips">${x.e?`<span class="chip">${esc(x.e)}</span>`:''}<span class="chip s">${esc(x.m)}</span></div>
+ const sent=sentTxt(x);
+ const nota=b?(x.bk.includes(b)?'Este cuento es el ejemplo propuesto para este tipo.':(x.bk.length?'Cuentos de ejemplo en el banco: '+x.bk.map(z=>esc(z.t)).join('; ')+'.':'')):'';
+ return `<div class="bluebox"><div class="tbhead"><h5>${tal?'Taller ':''}${x.n}. ${esc(x.t)}</h5><button class="btn ghost sm" data-${b?'pdel':'gdel'}="${del}">Quitar</button></div>
+ <div class="chips">${x.e?`<span class="chip">${esc(x.e)}</span>`:''}<span class="chip s">${esc(x.m)}</span><span class="chip">${esc(sent)}</span></div>
  <p>${esc(x.q)}</p><h6>Cómo se monta</h6><ul>${x.c.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>
  <h6>Ejemplo</h6><p>${esc(x.x)}</p>${x.k?`<div class="kv"><b>${/\?$/.test(x.k)?'Pregunta clave':'Idea clave'}:</b> ${esc(x.k)}</div>`:''}
- ${x.bk.includes(b)?'<div class="note">Este cuento es el ejemplo propuesto para este tipo.</div>':''}</div>`}
-function pickPanel(b){const p=st.pick[b.i]||{};
- const a=p.tipo?TIPOS.find(x=>x.n==p.tipo):null,c=p.tal?TALLERES.find(x=>x.n==p.tal):null;
- return (a?typeBox(a,b):'')+(c?typeBox(c,b):'')}
+ ${nota?`<div class="note">${nota}</div>`:''}${!b&&x.bk.length?`<div>${exBtns(x)}</div>`:''}</div>`}
+const byN=(arr,ns)=>ns.slice().sort((a,b)=>a-b).map(n=>arr.find(x=>x.n===n)).filter(Boolean);
+function pickPanel(b){const p=st.pick[b.i]||{tipos:[],tal:[]};
+ return byN(TIPOS,p.tipos).map(x=>typeBox(x,b,`${b.i}|tipos|${x.n}`)).join('')+byN(TALLERES,p.tal).map(x=>typeBox(x,b,`${b.i}|tal|${x.n}`)).join('')}
+function optsHTML(b,k){const arr=k==='tipos'?TIPOS:TALLERES,sel=(st.pick[b.i]||{})[k]||[];
+ return `<option value="">— ${k==='tipos'?'Añade un tipo de tarea':'Añade un taller'} —</option>`+arr.filter(x=>!sel.includes(x.n)).map(x=>`<option value="${x.n}">${x.n}. ${esc(x.t)}${x.bk.includes(b)?' ★ ejemplo con este cuento':''}</option>`).join('')}
+function dlInfo(b){const p=st.pick[b.i]||{tipos:[],tal:[]},n=p.tipos.length+p.tal.length;
+ return n?`El PDF incluye el cuento, sus ideas y ${n===1?'la forma elegida':'las '+n+' formas elegidas'} de llevarlo al aula.`:'El PDF incluye el cuento y sus ideas. Los tipos de tareas y talleres que añadas arriba se incluirán también.'}
+function refreshPick(i){const b=BOOKS[i];$('dlinfo'+i).textContent=dlInfo(b);$('tp'+i).innerHTML=pickPanel(b);$('kt'+i).innerHTML=optsHTML(b,'tipos');$('kc'+i).innerHTML=optsHTML(b,'tal')}
 function bookHTML(b){
  const cover=b.img?`<img src="${b.img}" alt="Portada de ${esc(b.t)}">`:`<div class="ph">${esc(b.t)}<small>Portada no disponible</small></div>`;
  const ideas=b.s.map(s=>{const d=b.d[s];if(!d||!d.acts.length)return '';
   const meta=[d.comp?'Competencia: '+esc(d.comp):'',d.ideas?'Gran idea: '+esc(d.ideas):'',d.cont?'Contenidos: '+esc(d.cont):''].filter(Boolean).join(' · ');
   return `<div class="ideas" style="margin-top:6px"><b>Ideas para trabajar mates con el cuento · ${esc(s)}</b>${meta?`<div class="cmp">${meta}</div>`:''}<ol>${d.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ol></div>`}).join('');
- const p=st.pick[b.i]||{};
- const opt=(x,cur)=>`<option value="${x.n}"${cur==x.n?' selected':''}>${x.n}. ${esc(x.t)}${x.bk.includes(b)?' ★ ejemplo con este cuento':''}</option>`;
  return `<article class="book" id="b${b.i}"><div class="bhead"><div class="cover">${cover}</div><div>
   <h3>${esc(b.t)}</h3><div class="meta">${esc(b.a||'Autoría no indicada')}${b.e?' · '+esc(b.e):''}</div>
   <div class="chips">${b.cu.map(c=>`<span class="chip">${esc(c)}</span>`).join('')}${b.s.map(s=>`<span class="chip s">${esc(s)}</span>`).join('')}${b.inf?'<span class="chip w" title="El sentido se asignó a partir del texto de la hoja general">sentido por revisar</span>':''}</div>
   <div class="sin">${esc(b.sn||'Sinopsis no disponible en las fuentes.')}</div>
-  <div class="row" style="margin-top:8px"><button class="btn ghost sm" data-dl="${b.i}">Descargar este cuento en PDF</button><span class="note" id="dlfb${b.i}"></span></div></div></div>
+  </div></div>
   <div class="sec">${ideas}</div>
   <div class="sec"><h4>Formas de llevar el cuento al aula</h4>
-   <div class="note">Elige uno de los tipos de tareas o de los talleres de la guía de aula para ver cómo trabajar este cuento.</div>
+   <div class="note">Añade los tipos de tareas y los talleres de la guía de aula que quieras. Aparecerán aquí y <b>se incluirán en el PDF</b>.</div>
    <div class="grid2" style="margin-top:6px">
-    <div><label class="l" for="kt${b.i}">Los 40 tipos de tareas</label><select id="kt${b.i}" data-kind="tipo" data-b="${b.i}"><option value="">— Elige un tipo de tarea —</option>${TIPOS.map(x=>opt(x,p.tipo)).join('')}</select></div>
-    <div><label class="l" for="kc${b.i}">Ocho tipos de recursos: talleres creativos</label><select id="kc${b.i}" data-kind="tal" data-b="${b.i}"><option value="">— Elige un taller —</option>${TALLERES.map(x=>opt(x,p.tal)).join('')}</select></div>
-   </div><div id="tp${b.i}">${pickPanel(b)}</div></div></article>`}
+    <div><label class="l" for="kt${b.i}">Los 40 tipos de tareas</label><select id="kt${b.i}" data-kind="tipos" data-b="${b.i}">${optsHTML(b,'tipos')}</select></div>
+    <div><label class="l" for="kc${b.i}">Ocho tipos de recursos: talleres creativos</label><select id="kc${b.i}" data-kind="tal" data-b="${b.i}">${optsHTML(b,'tal')}</select></div>
+   </div><div id="tp${b.i}">${pickPanel(b)}</div>
+   <div class="row" style="margin-top:12px"><button class="btn" data-dl="${b.i}">Descargar este cuento en PDF</button><span class="note" id="dlinfo${b.i}">${dlInfo(b)}</span><span class="note" id="dlfb${b.i}"></span></div></div></article>`}
 function renderOut(){
  const L=list();let h='';
  if(st.only!=null)h+=`<div class="sel"><span class="pill">Mostrando solo «${esc(BOOKS[st.only].t)}»<button data-clear-only aria-label="Volver a los resultados del filtro">×</button></span></div>`;
@@ -440,23 +439,30 @@ function renderOut(){
 $('out').addEventListener('click',e=>{
  if(e.target.closest('[data-clear-only]')){st.only=null;refresh();return}
  if(e.target.closest('[data-moreb]')){st.shown+=10;const y=window.scrollY;renderOut();window.scrollTo(0,y);return}
+ const q=e.target.closest('[data-pdel]');if(q){const [i,k,n]=q.dataset.pdel.split('|');const p=st.pick[+i];p[k]=p[k].filter(z=>z!==+n);refreshPick(+i);return}
  const d=e.target.closest('[data-dl]');if(d)downloadBook(BOOKS[+d.dataset.dl],'dlfb'+d.dataset.dl)});
 $('out').addEventListener('change',e=>{const el=e.target;if(!el.matches||!el.matches('select[data-kind]'))return;
- const i=+el.dataset.b;st.pick[i]=st.pick[i]||{};st.pick[i][el.dataset.kind]=el.value||null;$('tp'+i).innerHTML=pickPanel(BOOKS[i])});
+ const i=+el.dataset.b,k=el.dataset.kind,v=+el.value;if(!v)return;
+ const p=st.pick[i]=st.pick[i]||{tipos:[],tal:[]};if(!p[k].includes(v))p[k].push(v);refreshPick(i)});
 
 /* ================= GUÍA DE AULA ================= */
 function exBtns(x){return x.bk.map(b=>`<button class="ejlink" data-book="${b.i}">Ver «${esc(b.t)}» en el banco</button>`).join('')}
-function tipoHTML(x,isTal){
- const chips=`${x.e?`<span class="chip">${esc(x.e)}</span>`:''}<span class="chip s">${esc(x.m)}</span>`;
- return `<details class="task" id="${isTal?'tal':'tipo'}${x.n}" data-hay="${esc(norm([x.t,x.m,x.q,x.c.join(' '),x.x].join(' ')))}"><summary><div class="tt"><span class="tipo-n">${x.n}</span>${esc(x.t)}</div><div class="chips">${chips}</div></summary>
- <div class="tb"><p>${esc(x.q)}</p><h5>Cómo se monta</h5><ul>${x.c.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>
- <h5>Ejemplo</h5><p>${esc(x.x)}</p>${x.k?`<div class="kv"><b>${/\?$/.test(x.k)?'Pregunta clave':'Idea clave'}:</b> ${esc(x.k)}</div>`:''}${x.bk.length?`<div>${exBtns(x)}</div>`:''}</div></details>`}
-$('tipos').innerHTML=TIPOS.map(x=>tipoHTML(x,false)).join('');
-$('talleres').innerHTML=TALLERES.map(x=>tipoHTML(x,true)).join('');
-$('gq').oninput=e=>{const q=norm(e.target.value.trim());document.querySelectorAll('#tipos details').forEach(d=>{d.style.display=!q||q.split(/\s+/).every(w=>d.dataset.hay.includes(w))?'':'none'})};
-$('gopen').onclick=()=>document.querySelectorAll('#tipos details').forEach(d=>{if(d.style.display!=='none')d.open=true});
-$('gclose').onclick=()=>document.querySelectorAll('#tipos details,#talleres details').forEach(d=>d.open=false);
-function gotoTipo(n,tal){goTab('guia');setTimeout(()=>{const d=$((tal?'tal':'tipo')+n);if(!d)return;d.style.display='';d.open=true;d.classList.add('hl');d.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>d.classList.remove('hl'),2500)},60)}
+const gsel={tipos:[],tal:[]};
+function renderGuideSel(){
+ const lib=(arr,k)=>arr.filter(x=>!gsel[k].includes(x.n)).map(x=>`<option value="${k==='tipos'?'t':'c'}${x.n}">${x.n}. ${esc(x.t)}</option>`).join('');
+ $('gadd').innerHTML='<option value="">— Elige un tipo de tarea o un taller —</option>'
+  +`<optgroup label="Los 40 tipos de tareas">${lib(TIPOS,'tipos')}</optgroup><optgroup label="Ocho tipos de recursos: talleres creativos">${lib(TALLERES,'tal')}</optgroup>`;
+ const ts=byN(TIPOS,gsel.tipos),cs=byN(TALLERES,gsel.tal);
+ $('gshown').innerHTML=(ts.length?'<h3 class="am" style="font-size:1.8rem;margin:10px 0 0;color:var(--v900)">Tipos de tareas</h3>'+ts.map(x=>typeBox(x,null,'t'+x.n)).join(''):'')
+  +(cs.length?'<h3 class="am" style="font-size:1.8rem;margin:10px 0 0;color:var(--v900)">Talleres creativos</h3>'+cs.map(x=>typeBox(x,null,'c'+x.n)).join(''):'')
+  +(ts.length+cs.length?'':'<div class="empty" style="padding:14px">Todavía no has elegido ninguno. El PDF incluirá solo las orientaciones generales de la guía.</div>');
+ $('ginfo').textContent=ts.length+cs.length?`El PDF incluye las orientaciones generales y ${ts.length+cs.length===1?'el elemento elegido':'los '+(ts.length+cs.length)+' elementos elegidos ('+ts.length+(ts.length===1?' tipo':' tipos')+' y '+cs.length+(cs.length===1?' taller':' talleres')+')'}.`:'El PDF incluye las orientaciones generales. Los tipos de tareas y talleres que elijas arriba se incluirán también.';
+ $('gcount').textContent=ts.length+cs.length?`${ts.length} ${ts.length===1?'tipo':'tipos'} y ${cs.length} ${cs.length===1?'taller':'talleres'} en la guía`:''}
+$('gadd').onchange=e=>{const v=e.target.value;if(!v)return;const n=+v.slice(1),k=v[0]==='t'?'tipos':'tal';if(!gsel[k].includes(n))gsel[k].push(n);renderGuideSel()};
+$('gall').onclick=()=>{gsel.tipos=TIPOS.map(x=>x.n);gsel.tal=TALLERES.map(x=>x.n);renderGuideSel()};
+$('gclear').onclick=()=>{gsel.tipos=[];gsel.tal=[];renderGuideSel()};
+$('gshown').addEventListener('click',e=>{const q=e.target.closest('[data-gdel]');if(!q)return;const v=q.dataset.gdel,n=+v.slice(1),k=v[0]==='t'?'tipos':'tal';gsel[k]=gsel[k].filter(z=>z!==n);renderGuideSel()});
+renderGuideSel();
 $('guia').addEventListener('click',e=>{const b=e.target.closest('[data-book]');if(b)showOnly(+b.dataset.book)});
 
 /* ================= PDF SIN LIBRERÍAS ================= */
@@ -542,8 +548,8 @@ function buildPDF(blocks,title){
  // pie
  const N=pages.length;
  pages.forEach((p,i)=>{const l='Cuentos y mates · LOMLOE · D 38/2022 CyL · CC BY-NC-SA 4.0',r=`pág. ${i+1} de ${N}`;
-  let rw=0;for(const ch of r)rw+=cw(ch,0)*8/1000;
-  p.fg+=`${rgb('BFE0C9')} RG 0.6 w ${M} 40 m ${f2(PW-M)} 40 l S\n`+textOps([{t:l,w:0,c:'667D6E'}],M,28,8)+textOps([{t:r,w:0,c:'667D6E'}],PW-M-rw,28,8)});
+  let rw=0;for(const ch of r)rw+=cw(ch,0)*9/1000;
+  p.fg+=`${rgb('BFE0C9')} RG 0.6 w ${M} 40 m ${f2(PW-M)} 40 l S\n`+textOps([{t:l,w:0,c:'667D6E'}],M,28,8)+textOps([{t:r,w:0,c:'2F5D44'}],PW-M-rw,28,9)+textOps([{t:'Mercedes Carpintero Gómez',i:1,w:0,c:'667D6E'}],M,PH-32,8.5)});
  // ensamblado
  const parts=[],offs=[];let off=0;const push=u=>{parts.push(u);off+=u.length};const add=s=>push(enc.encode(s));
  push(new Uint8Array([37,80,68,70,45,49,46,52,10,37,226,227,207,211,10]));
@@ -575,13 +581,15 @@ const todayES=()=>new Date().toLocaleDateString('es-ES',{day:'numeric',month:'lo
 const head=sub=>[{t:'title',text:'Cuentos y mates'},{t:'sub',text:sub},{t:'note',text:`${todayES()} · LOMLOE · Decreto 38/2022 de Castilla y León`},{t:'rule'},
  {t:'box',fill:BLUEBG,border:BLUEBD,items:[{t:'p',size:9,runs:[{s:'El curso y la edad son relativos. ',b:1,c:BLUE},{s:NOTE_REL,c:BLUE}],after:0}]},{t:'gap',h:6}];
 const lab=(l,v)=>({t:'p',runs:[{s:l+': ',b:1,c:BL},{s:v}],after:3});
-function tipoBlocks(x,pre,b){const tal=pre!=='';
- const o=[{t:'h2',text:`${pre}${x.n}. ${x.t}`},{t:'note',text:(x.e?x.e+' · ':'')+x.m},{t:'p',text:x.q},{t:'p',runs:[{s:'Cómo se monta',b:1,c:BL}],after:2}];
+function tipoBlocks(x,pre,b){
+ const sent=sentTxt(x);
+ const o=[{t:'h2',text:`${pre}${x.n}. ${x.t}`},{t:'note',text:(x.e?x.e+' · ':'')+x.m+' · Sentidos: '+sent},{t:'p',text:x.q},{t:'p',runs:[{s:'Cómo se monta',b:1,c:BL}],after:2}];
  x.c.forEach(c=>o.push({t:'li',text:c}));
  const inner=[{t:'p',runs:[{s:'Ejemplo: ',b:1,c:BLUE},{s:x.x,c:'24465F'}],after:x.k?4:0}];
  if(x.k)inner.push({t:'p',runs:[{s:(/\?$/.test(x.k)?'Pregunta clave: ':'Idea clave: '),b:1,c:BLUE},{s:x.k,c:'24465F'}],after:0});
  o.push({t:'box',fill:BLUEBG,border:BLUEBD,items:inner});
  if(b&&x.bk.includes(b))o.push({t:'note',text:'Este cuento es el ejemplo propuesto para este tipo.'});
+ else if(x.bk.length)o.push({t:'note',text:'Cuentos de ejemplo en el banco: '+x.bk.map(z=>z.t).join('; ')+'.'});
  return o}
 function bookBlocks(b){
  const p=st.pick[b.i]||{};
@@ -596,7 +604,7 @@ function bookBlocks(b){
   if(meta)it.push({t:'note',text:meta,after:3});
   d.acts.forEach((a,k)=>it.push({t:'p',indent:4,text:`${k+1}. ${a}`,after:2}));
   B.push({t:'box',fill:'E3F2E6',border:'BFE0C9',items:it})});
- const ch=[p.tipo?[TIPOS.find(x=>x.n==p.tipo),'']:null,p.tal?[TALLERES.find(x=>x.n==p.tal),'Taller ']:null].filter(Boolean);
+ const ch=[...byN(TIPOS,p.tipos||[]).map(x=>[x,'']),...byN(TALLERES,p.tal||[]).map(x=>[x,'Taller '])];
  if(ch.length){B.push({t:'h1',text:'Formas de llevar el cuento al aula'});ch.forEach(([x,pre])=>tipoBlocks(x,pre,b).forEach(z=>B.push(z)))}
  B.push({t:'h3',text:'Bibliografía'});
  if(ch.length)B.push({t:'p',indent:14,text:'Mates de Cuento. (s. f.). Cuarenta tipos de tareas y ocho talleres creativos [presentación].',after:2});
@@ -615,8 +623,10 @@ function guideBlocks(){
   else if(el.tagName==='TABLE'){const rs=[...el.rows].map(r=>[...r.cells].map(c=>c.textContent.trim()));if(rs.length>1)rs[0].forEach((h,k)=>B.push(lab(h,rs[1][k]||'')))}});
  document.querySelectorAll('#guia .box').forEach((box,k)=>{
   if(k===0){walk(box,true);return}
-  if(box.querySelector('#tipos')){B.push({t:'h1',text:'Los 40 tipos de tareas',pb:1});B.push({t:'note',text:box.querySelector('p.note').textContent});TIPOS.forEach(x=>tipoBlocks(x,'').forEach(z=>B.push(z)));return}
-  if(box.querySelector('#talleres')){B.push({t:'h1',text:'Ocho tipos de recursos: talleres creativos',pb:1});B.push({t:'note',text:box.querySelector('p.note').textContent});TALLERES.forEach(x=>tipoBlocks(x,'Taller ').forEach(z=>B.push(z)));return}
+  if(box.querySelector('#gshown')){const ts=byN(TIPOS,gsel.tipos),cs=byN(TALLERES,gsel.tal);
+   if(ts.length){B.push({t:'h1',text:'Tipos de tareas',pb:1});B.push({t:'note',text:`Selección de ${ts.length} de los 40 tipos de tareas de la guía de aula. Los números 1 a 28 son actividades concretas, del 29 al 38 estrategias de aula, el 39 es el mateclub y el 40 son los talleres con familias.`});ts.forEach(x=>tipoBlocks(x,'').forEach(z=>B.push(z)))}
+   if(cs.length){B.push({t:'h1',text:'Ocho tipos de recursos: talleres creativos',pb:1});B.push({t:'note',text:`Selección de ${cs.length} de los 8 talleres creativos. Son proyectos de varias sesiones en los que el libro se convierte en proyecto.`});cs.forEach(x=>tipoBlocks(x,'Taller ').forEach(z=>B.push(z)))}
+   return}
   if(box.querySelector('#cetab')){B.push({t:'h1',text:'Competencias específicas del área'});Object.entries(CEN).forEach(([n,v])=>B.push(lab('CE'+n,v[0]+': '+v[1])));B.push({t:'note',text:'Redacción condensada del D 38/2022; verificar literalidad en BOCYL n.º 190, de 30 de septiembre de 2022.'});return}
   walk(box,false)});
  B.push({t:'note',text:'Si te animas a llevar estos cuentos al aula, nos encantaría ver cómo ha ido: puedes enviarnos fotos y propuestas a a.n.investigacioneducativa@gmail.com. Obra bajo licencia CC BY-NC-SA 4.0.'});
